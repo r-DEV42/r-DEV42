@@ -12,11 +12,11 @@ Most of what I find isn't a clever exploit. A protocol upgrades a dependency (an
 
 ### Tooling
 
-I wrote my own scripts for this work and I'm cleaning them up to publish:
+I wrote my own scripts for this work. One of them is public:
 
-- selector-drift: finds calls to functions that the current implementation of a dependency no longer has, and checks the earlier implementation to confirm the function really existed.
-- storage-layout: compiles two verified implementations with the exact solc version and compares slots.
-- upgrade watch: lists proxies upgraded in the last N days and diffs old against new source.
+- [selector-drift](https://github.com/r-DEV42/selector-drift): finds calls to functions that a dependency no longer has after an upgrade.
+
+The rest (storage layout comparison between implementations, upgrade monitoring) I keep for my own reviews.
 
 ### Disclosures
 
