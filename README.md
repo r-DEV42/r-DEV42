@@ -1,16 +1,28 @@
-## Hi there 👋
+## rDEV42
 
-<!--
-**r-DEV42/r-DEV42** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+I read Solidity that changed recently and check whether it still works with what it talks to.
 
-Here are some ideas to get you started:
+Most of what I find isn't a clever exploit. A protocol upgrades a dependency (an Aave pool, a LayerZero endpoint, a vault implementation) and something it calls stops existing, or a storage slot moves, or a cross-chain setting no longer matches the other side. Audits often predate that change. That gap is where I look.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### What I do
+
+- Review integrations after upgrades: removed functions, changed return values, storage layout between implementations, peer and limit configuration across chains.
+- Small and mid-size DeFi (roughly $2M to $30M TVL): vaults, bridges, restaking and yield wrappers.
+- Verify on a mainnet fork before reporting anything. If I can't reproduce it, I don't send it.
+
+### Tooling
+
+I wrote my own scripts for this work and I'm cleaning them up to publish:
+
+- selector-drift: finds calls to functions that the current implementation of a dependency no longer has, and checks the earlier implementation to confirm the function really existed.
+- storage-layout: compiles two verified implementations with the exact solc version and compares slots.
+- upgrade watch: lists proxies upgraded in the last N days and diffs old against new source.
+
+### Disclosures
+
+Reports go to the teams privately, through GitHub security advisories or email. Some are still open. I'll list them here once they're fixed and the teams agree.
+
+### Contact
+
+Open to scoped reviews of upgrades and integrations.
+X: [@rDEV4224](https://x.com/rDEV4224)
